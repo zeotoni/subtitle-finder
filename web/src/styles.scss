@@ -2,6 +2,34 @@
 @use './styles/colors';
 @use './styles/base' as *;
 
+* {
+  margin: 0;
+  padding: 0;
+
+  ul {
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a:hover,
+  button:hover {
+    cursor: pointer;
+  }
+
+  p,
+  li,
+  h1,
+  h2,
+  h3,
+  h4 {
+    overflow-wrap: break-word;
+  }
+}
+
 *,
 *::before,
 *::after {
