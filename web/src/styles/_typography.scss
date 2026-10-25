@@ -22,6 +22,8 @@ $fs-base: clamp(0.875rem, 0.8333rem + 0.2083vi, 1rem);
 $fs-heading: clamp(0.9844rem, 0.9375rem + 0.2344vi, 1.125rem);
 /* step 2: 17.72px → 20.25px */
 $fs-brand: clamp(1.1074rem, 1.0547rem + 0.2637vi, 1.2656rem);
+/* step 5: 25.23px → 28.83px (título da página) */
+$fs-title: clamp(1.5768rem, 1.5017rem + 0.3754vi, 1.802rem);
 
 @mixin text-small {
   font-size: $fs-small;
@@ -44,5 +46,11 @@ $fs-brand: clamp(1.1074rem, 1.0547rem + 0.2637vi, 1.2656rem);
 @mixin text-brand {
   font-size: $fs-brand;
   line-height: 1.3;
+  font-weight: $fw-bold;
+}
+
+@mixin text-title {
+  font-size: $fs-title;
+  line-height: 1.2;
   font-weight: $fw-bold;
 }
