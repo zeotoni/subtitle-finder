@@ -1,0 +1,219 @@
+@use 'base' as *;
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  padding: $space-3;
+  margin-top: $space-8;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-card;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+
+  @include text-small;
+
+  .search-input-group {
+    @include field;
+    display: flex;
+    align-items: center;
+
+    .search-icon {
+      width: $space-5;
+      height: $space-5;
+      flex-shrink: 0;
+      color: var(--color-placeholder);
+      pointer-events: none;
+    }
+
+    .search-input {
+      font-size: max(1rem, $fs-base);
+      padding: $space-2;
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      color: var(--color-text);
+      background-color: transparent;
+
+      &::placeholder {
+        color: var(--color-placeholder);
+        opacity: 1;
+      }
+    }
+
+    .submit-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: $space-8;
+      height: $space-8;
+      background-color: var(--color-primary);
+      color: var(--color-primary-contrast);
+      border: none;
+      border-radius: $radius-badge;
+      cursor: pointer;
+      transition:
+        background-color $transition-fast,
+        transform $transition-fast;
+
+      &:hover {
+        background-color: var(--color-primary-hover);
+      }
+
+      &:active {
+        background-color: var(--color-primary-active);
+        transform: scale(0.96);
+      }
+    }
+
+    .submit-icon {
+      width: $space-4;
+      height: $space-4;
+      flex-shrink: 0;
+    }
+
+    @include field-focus('.search-input');
+  }
+
+  .divider-container {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    padding: 0 $space-2;
+
+    .divider-line {
+      flex: 1;
+      height: 1px;
+      background-color: var(--color-border);
+    }
+
+    .divider-text {
+      @include text-small;
+
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-muted);
+    }
+  }
+
+  .file-drop-area {
+    @include field;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    &:has(.file-picker:hover) {
+      border-color: var(--color-focus-ring);
+      background-color: color-mix(in srgb, var(--color-focus-ring) 4%, transparent);
+
+      .file-icon {
+        color: var(--color-primary-text);
+      }
+    }
+
+    @include field-focus('.file-input');
+  }
+
+  .file-input {
+    @include visually-hidden;
+  }
+
+  .file-picker {
+    display: flex;
+    align-items: center;
+    gap: $space-3;
+    padding: $space-input;
+    cursor: pointer;
+  }
+
+  .file-icon-container {
+    flex-shrink: 0;
+    padding: $space-1 $space-2;
+    background-color: var(--color-border);
+    border-radius: $radius-card;
+  }
+
+  .file-icon {
+    width: $space-6;
+    height: $space-6;
+    flex-shrink: 0;
+    color: var(--color-focus-ring);
+    transition: color $transition-fast;
+  }
+
+  .file-title {
+    @include text-heading;
+    flex: 1;
+    min-width: 0;
+    color: var(--color-text);
+
+    &--selected {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+
+  .file-divider {
+    height: 1px;
+    background-color: var(--color-border);
+  }
+
+  .file-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: $space-3;
+    padding: $space-input;
+  }
+
+  .format-tags {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+  }
+
+  .tag {
+    @include text-small;
+    font-family: monospace;
+    color: var(--color-text-muted);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: $radius-badge;
+    padding: $space-1 $space-2;
+  }
+
+  .btn-remove-text {
+    @include text-small;
+    display: inline-flex;
+    align-items: center;
+    gap: $space-1;
+    padding: $space-1 $space-2; // mesmo padding e borda da .tag: o rodapé não muda de altura
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: $radius-badge;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition:
+      color $transition-fast,
+      border-color $transition-fast,
+      background-color $transition-fast;
+
+    &:hover {
+      color: var(--color-error);
+      border-color: color-mix(in srgb, var(--color-error) 40%, transparent);
+      background-color: color-mix(in srgb, var(--color-error) 8%, transparent);
+    }
+  }
+
+  .close-icon {
+    width: $space-4;
+    height: $space-4;
+    flex-shrink: 0;
+    pointer-events: none;
+  }
+}

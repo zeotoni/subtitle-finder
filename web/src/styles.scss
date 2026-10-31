@@ -51,6 +51,14 @@ select {
 }
 
 :focus-visible {
+  @include focus-ring;
+}
+
+.visually-hidden {
+  @include visually-hidden;
+}
+
+:focus-visible {
   outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
 }

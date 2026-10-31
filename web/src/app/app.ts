@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, output } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Footer } from './core/footer/footer';
 import { Header } from './core/header/header';
@@ -9,4 +9,10 @@ import { Header } from './core/header/header';
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
-export class App {}
+export class App {
+  dataTheme = output<string>();
+
+  toggleThe($event: string) {
+    this.dataTheme.emit($event);
+  }
+}

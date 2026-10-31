@@ -1,3 +1,15 @@
 <h1>Buscar Legenda</h1>
 
 <p>Busque sua legenda por título ou selecione um arquivo local</p>
+
+<app-search-form (searched)="onSearched($event)" />
+
+@if (request(); as item) {
+  <p>
+    @if (item.type === 'title') {
+      {{ item.title }}
+    } @else {
+      {{ item.file.name }}
+    }
+  </p>
+}
