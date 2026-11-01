@@ -1,4 +1,5 @@
 import { Component, computed, ElementRef, output, signal, viewChild } from '@angular/core';
+import { formatSize, getExtension } from '../file-utils';
 import { SearchRequest } from '../search-request';
 
 @Component({
@@ -17,18 +18,9 @@ export class SearchForm {
 
   protected readonly name = computed(() => this.file()?.name);
 
-  protected readonly extension = computed(() => {
-    const name = this.name();
-    if (!name) return '';
+  protected readonly extension = computed(() => getExtension(this.name() ?? ''));
 
-    const dot = name.lastIndexOf('.');
-    return dot > 0 ? name?.slice(dot + 1).toUpperCase() : '';
-  });
-
-  protected readonly size = computed(() => {
-    const bytes = this.file()?.size ?? 0;
-    return bytes >= 1e9 ? `${(bytes / 1e9).toFixed(1)} GB` : `${Math.round(bytes / 1e6)} MB`;
-  });
+  protected readonly size = computed(() => formatSize(this.file()?.size ?? 0));
 
   protected onFileSelected($event: Event) {
     const input = $event.target as HTMLInputElement;
