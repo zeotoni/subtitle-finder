@@ -28,5 +28,15 @@ export function getExtension(name: string | undefined) {
 }
 
 export function formatSize(size: number) {
-  return size >= 1e9 ? `${(size / 1e9).toFixed(1)} GB` : `${Math.round(size / 1e6)} MB`;
+  if (size >= 1e9) {
+    return `${(size / 1e9).toFixed(1).replace('.', ',')} GB`;
+  }
+
+  if (size >= 1e6) {
+    const mbVal = Math.round(size / 1e6);
+    return mbVal === 1000 ? `1,0 GB` : `${mbVal} MB`;
+  }
+
+  const kbVal = Math.round(size / 1e3);
+  return kbVal === 1000 ? `1 MB` : `${kbVal} KB`;
 }
