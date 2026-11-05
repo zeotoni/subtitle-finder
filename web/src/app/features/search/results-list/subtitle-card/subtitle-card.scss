@@ -1,0 +1,99 @@
+@use 'base' as *;
+
+:host {
+  display: block;
+}
+
+.subtitle-card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  padding: $space-3;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-card;
+}
+
+.card-badges {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.badge-lang {
+  @include badge(var(--color-surface), var(--color-text), var(--color-border));
+  font-family: monospace;
+  font-weight: $fw-semibold;
+}
+
+.badge-tag {
+  &.trusted {
+    @include badge(var(--color-success-bg), var(--color-success-text), var(--color-success-border));
+  }
+
+  &.hearing {
+    @include badge(var(--color-surface), var(--color-text-muted), var(--color-border));
+  }
+
+  &.auto-trans {
+    @include badge(var(--color-warning-bg), var(--color-warning-text), var(--color-warning-border));
+  }
+}
+
+.release-title {
+  @include text-base;
+  margin: 0;
+  font-weight: $fw-semibold;
+  color: var(--color-text);
+  overflow-wrap: anywhere; // quebra só onde precisa, sem reticências
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3;
+  padding-top: $space-2;
+  border-top: 1px solid var(--color-border);
+}
+
+.download-count {
+  @include text-small;
+  color: var(--color-text-muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.btn-download {
+  @include text-small;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: $space-8;
+  padding: 0 $space-3;
+  font-weight: $fw-semibold;
+  background-color: var(--color-primary);
+  color: var(--color-primary-contrast);
+  border: none;
+  border-radius: $radius-btn;
+  cursor: pointer;
+  transition:
+    background-color $transition-fast,
+    transform $transition-fast;
+
+  &:hover {
+    background-color: var(--color-primary-hover);
+  }
+
+  &:active {
+    background-color: var(--color-primary-active);
+    transform: scale(0.96);
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: var(--color-border);
+    color: var(--color-text-muted);
+    transform: none;
+  }
+}

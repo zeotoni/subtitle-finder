@@ -1,11 +1,11 @@
 @use 'tokens' as *;
+@use 'typography' as *;
 
 @mixin focus-ring {
   outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
 }
 
-// visual comum dos campos (texto e arquivo)
 @mixin field {
   background-color: var(--color-bg);
   border: 1px solid var(--color-border-input);
@@ -16,7 +16,6 @@
     background-color $transition-fast;
 }
 
-// $target é o seletor do elemento interno que recebe o foco
 @mixin field-focus($target) {
   &:has(#{$target}:focus-visible) {
     border-color: var(--color-focus-ring);
@@ -34,4 +33,26 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+@mixin badge($bg, $color, $border) {
+  @include text-small;
+  display: inline-flex;
+  align-items: center;
+  padding: $space-1 $space-2;
+  background-color: $bg;
+  color: $color;
+  border: 1px solid $border;
+  border-radius: $radius-badge;
+}
+
+@mixin card {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  padding: $space-3;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: $radius-card;
+  box-shadow: var(--shadow-card);
 }

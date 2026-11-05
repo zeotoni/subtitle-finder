@@ -1,0 +1,45 @@
+@use 'base' as *;
+
+:host {
+  display: block;
+  margin-top: $space-4;
+}
+
+.results-container-card {
+  @include card;
+}
+
+.results-card-header {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  padding-bottom: $space-2;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.status-dot {
+  width: $space-2;
+  height: $space-2;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--color-success-text);
+}
+
+.results-text {
+  @include text-small;
+  color: var(--color-text-muted);
+
+  strong {
+    font-weight: $fw-semibold;
+    color: var(--color-text);
+  }
+}
+
+.subtitles-list {
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
