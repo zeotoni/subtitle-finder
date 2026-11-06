@@ -1,4 +1,4 @@
-import { Component, output } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -7,18 +7,14 @@ import { Component, output } from '@angular/core';
   styleUrl: './header.scss',
 })
 export class Header {
-  // @Output() newThemeEvent = new EventEmitter<string>();
-  newTheme = output<string>();
-
-  theme: 'dark' | 'light' = 'light';
-
   toggleTheme() {
-    if (this.theme == 'dark') {
-      this.theme = 'light';
-      this.newTheme.emit('light');
-    } else {
-      this.theme = 'dark';
-      this.newTheme.emit('dark');
-    }
+    const root = document.documentElement;
+    const currentTheme = root.getAttribute('data-theme');
+
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    const isDark = currentTheme ? currentTheme === 'dark' : systemPrefersDark;
+
+    root.setAttribute('data-theme', isDark ? 'light' : 'dark');
   }
 }

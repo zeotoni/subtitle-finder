@@ -23,4 +23,21 @@ header {
 
   backdrop-filter: blur(12px);
   background-color: color-mix(in srgb, var(--color-surface) 65%, transparent);
+
+  button {
+    display: flex;
+    flex-shrink: 0;
+    padding: $space-2 $space-3;
+    background-color: var(--color-border);
+    border-radius: $radius-card;
+    border: none;
+
+    .theme-icon {
+      width: $space-5;
+      height: $space-5;
+      flex-shrink: 0;
+      // color: var(--color-focus-ring);
+      transition: color $transition-fast;
+    }
+  }
 }
