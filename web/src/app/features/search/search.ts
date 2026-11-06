@@ -24,4 +24,13 @@ export class Search {
     if (!req) return '';
     return req.type === 'title' ? req.title : req.file.name;
   });
+
+  protected readonly statusMessage = computed(() => {
+    if (!this.request()) return '';
+
+    const count = this.cards.length;
+    const found = count === 1 ? '1 legenda encontrada' : `${count} legendas encontradas`;
+
+    return `${found} para ${this.searchTerm()}`;
+  });
 }

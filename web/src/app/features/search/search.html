@@ -4,6 +4,8 @@
 
 <app-search-form (searched)="onSearched($event)" />
 
+<p class="visually-hidden" role="status">{{ statusMessage() }}</p>
+
 @if (request()) {
   <app-results-list [subtitleCards]="cards" [searchTerm]="searchTerm()"></app-results-list>
 }
