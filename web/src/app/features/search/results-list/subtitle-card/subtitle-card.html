@@ -1,0 +1,35 @@
+<article class="subtitle-card">
+  <header class="card-badges">
+    <span class="badge-lang">{{ subtitleInfo().language }}</span>
+
+    @if (subtitleInfo().trusted) {
+      <span class="badge-tag trusted">Confiável</span>
+    }
+
+    @if (subtitleInfo().hearingImpaired) {
+      <span class="badge-tag hearing">Para deficientes auditivos</span>
+    }
+
+    @if (subtitleInfo().autoTranslated) {
+      <span class="badge-tag auto-trans">Tradução automática</span>
+    }
+  </header>
+
+  <p class="release-title">
+    {{ subtitleInfo().release }}
+  </p>
+
+  <footer class="card-footer">
+    <span class="download-count">
+      {{ subtitleInfo().downloads.toLocaleString('pt-BR') }} downloads
+    </span>
+
+    <button
+      type="button"
+      class="btn-download"
+      [attr.aria-label]="'Baixar legenda ' + subtitleInfo().release"
+    >
+      Baixar
+    </button>
+  </footer>
+</article>

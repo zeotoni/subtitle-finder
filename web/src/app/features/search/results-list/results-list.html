@@ -1,0 +1,21 @@
+<section class="results-container-card" aria-label="Resultados de legendas">
+  <div class="results-card-header">
+    <span class="status-dot" aria-hidden="true"></span>
+    <p class="results-text">
+      @if (subtitleCards().length === 1) {
+        1 legenda encontrada
+      } @else {
+        {{ subtitleCards().length }} legendas encontradas
+      }
+      para <strong>{{ searchTerm() }}</strong>
+    </p>
+  </div>
+
+  <ul class="subtitles-list" role="list">
+    @for (item of subtitleCards(); track item.fileId) {
+      <li>
+        <app-subtitle-card [subtitleInfo]="item"></app-subtitle-card>
+      </li>
+    }
+  </ul>
+</section>

@@ -1,0 +1,18 @@
+@use 'base' as *;
+
+:host {
+  display: block;
+  max-width: 45rem;
+  margin-inline: auto;
+}
+
+h1 {
+  @include text-title;
+  text-align: center;
+}
+
+p {
+  color: var(--color-text-muted);
+  text-align: center;
+  margin-top: $space-4;
+}

@@ -1,0 +1,11 @@
+<h1>Buscar Legenda</h1>
+
+<p>Busque sua legenda por título ou selecione um arquivo local</p>
+
+<app-search-form (searched)="onSearched($event)" />
+
+<p class="visually-hidden" role="status">{{ statusMessage() }}</p>
+
+@if (request()) {
+  <app-results-list [subtitleCards]="cards" [searchTerm]="searchTerm()"></app-results-list>
+}

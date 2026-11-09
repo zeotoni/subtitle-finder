@@ -1,0 +1,128 @@
+<form
+  class="search-form-card"
+  role="search"
+  aria-label="Busca de legendas"
+  (submit)="onSubmit($event)"
+>
+  <div class="search-input-group">
+    <svg
+      class="search-icon"
+      viewBox="0 -960 960 960"
+      fill="currentColor"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z"
+      />
+    </svg>
+
+    <label for="search-input" class="visually-hidden">Título do filme ou série</label>
+    <input
+      type="text"
+      class="search-input"
+      id="search-input"
+      placeholder="Busque por título..."
+      autocomplete="off"
+      [value]="query()"
+      (input)="onQueryInput($event)"
+    />
+
+    <button type="submit" class="submit-btn" aria-label="Buscar legendas">
+      <svg
+        class="submit-icon"
+        viewBox="0 -960 960 960"
+        fill="currentColor"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <path d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="divider-container" aria-hidden="true">
+    <div class="divider-line"></div>
+    <span class="divider-text">ou</span>
+    <div class="divider-line"></div>
+  </div>
+
+  <div class="file-drop-area">
+    <label for="filepicker" class="file-picker">
+      <input
+        #fileInput
+        id="filepicker"
+        type="file"
+        class="file-input"
+        (change)="onFileSelected($event)"
+      />
+
+      <span class="file-icon-container">
+        <svg
+          class="file-icon"
+          viewBox="0 -960 960 960"
+          fill="currentColor"
+          aria-hidden="true"
+          focusable="false"
+        >
+          <path
+            d="m160-800 80 160h120l-80-160h80l80 160h120l-80-160h80l80 160h120l-80-160h120q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800Zm0 240v320h640v-320H160Zm0 0v320-320Z"
+          />
+        </svg>
+      </span>
+
+      <span class="file-title" [class.file-title--selected]="name()" [attr.title]="name() || null">
+        @if (name()) {
+          <span class="visually-hidden">Trocar vídeo: </span>{{ name() }}
+        } @else {
+          Selecione o vídeo
+        }
+      </span>
+    </label>
+
+    <div class="file-divider" aria-hidden="true"></div>
+
+    <div class="file-footer">
+      <span class="format-tags">
+        @if (name()) {
+          @if (extension()) {
+            <span class="tag">.{{ extension() }}</span>
+          }
+          <span class="tag">{{ size() }}</span>
+        } @else {
+          <span class="tag">.MKV</span>
+          <span class="tag">.MP4</span>
+          <span class="tag">.AVI</span>
+        }
+      </span>
+
+      @if (name()) {
+        <button
+          type="button"
+          class="btn-remove-text"
+          [attr.aria-label]="'Remover arquivo ' + name()"
+          (click)="resetSelection()"
+        >
+          <span>Remover</span>
+          <svg
+            class="close-icon"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path
+              d="M6.4,19L5,17.6L10.6,12L5,6.4L6.4,5L12,10.6L17.6,5L19,6.4L13.4,12L19,17.6L17.6,19L12,13.4L6.4,19Z"
+            />
+          </svg>
+        </button>
+      }
+    </div>
+
+    <span class="visually-hidden" role="status">
+      @if (name()) {
+        Arquivo selecionado: {{ name() }}, {{ size() }}
+      }
+    </span>
+  </div>
+</form>
