@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { getNextTheme } from '../theme-utils';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +10,11 @@ import { Component } from '@angular/core';
 export class Header {
   toggleTheme() {
     const root = document.documentElement;
-    const currentTheme = root.getAttribute('data-theme');
-
     const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-    const isDark = currentTheme ? currentTheme === 'dark' : systemPrefersDark;
-
-    root.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    root.setAttribute(
+      'data-theme',
+      getNextTheme(root.getAttribute('data-theme'), systemPrefersDark),
+    );
   }
 }
